@@ -64,12 +64,13 @@ const SingleCountry = () => {
                         </p>
                     </Col>
                 </Row>
-            </Card>
-
-            <div className="my-5">
+                <div className="my-5">
                 <h2>Location</h2>
                 <MapComponent lat={lat} lng={lng} /> 
             </div>
+            </Card>
+
+          
         </Container>
     );
 };
