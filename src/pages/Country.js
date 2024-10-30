@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { Image, Row, Col } from "react-bootstrap";
+import { Image, Row, Col, Container, Card } from "react-bootstrap";
 
 const Country = () => {
-
   const { name } = useParams();
 
   // Store the country data in a state
   const [country, setCountry] = useState({});
 
-  // We could make a second API request here to get more details about the country
+  // Fetch detailed country data
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
@@ -20,40 +19,39 @@ const Country = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []);
+  }, [name]);
 
   if (!country.name || !country.flags) {
     return <p>Loading...</p>;
   }
 
   return (
-    <div>
-      <Row>
-        <Col>
-          <Image
-            src={country.flags?.png}
-            alt={`${country.name?.common}'s flag`}
-          />
-        </Col>
-        <Col>
-          <p>
-            <b>Common Name:</b> {country.name.common}
-          </p>
-          <p>
-            <b>Official Name:</b> {country.name.official}
-          </p>
-          <p>
-            <b>Region:</b> {country.region}
-          </p>
-          <p>
-            <b>Sub Region:</b> {country.subregion}
-          </p>
-          <p>
-            <b>Currency:</b> {Object.values(country.currencies)[0].name}
-          </p>
-        </Col>
-      </Row>
-    </div>
+    <Container className="my-5">
+      <Card className="p-4 shadow-lg">
+        <Row className="align-items-center">
+          <Col md={6} className="text-center">
+            <Image
+              src={country.flags?.png}
+              alt={`${country.name?.common}'s flag`}
+              rounded
+              fluid
+              style={{ maxHeight: "300px" }}
+            />
+          </Col>
+          <Col md={6}>
+            <h3 className="text-center mb-4">{country.name.common}</h3>
+            <ul className="list-unstyled">
+              <li><strong>Official Name:</strong> {country.name.official}</li>
+              <li><strong>Region:</strong> {country.region}</li>
+              <li><strong>Subregion:</strong> {country.subregion}</li>
+              <li>
+                <strong>Currency:</strong> {Object.values(country.currencies)[0].name}
+              </li>
+            </ul>
+          </Col>
+        </Row>
+      </Card>
+    </Container>
   );
 };
 
