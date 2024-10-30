@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { GoogleMap, LoadScript, Marker } from '@react-google-maps/api';
 
@@ -20,7 +19,7 @@ const MapComponent = ({ lat, lng }) => {
                 center={center}
                 zoom={10}
             >
-                <Marker position={center} /> {/* Place a marker at the country location */}
+                <Marker position={center} /> 
             </GoogleMap>
         </LoadScript>
     );
