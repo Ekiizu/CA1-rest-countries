@@ -5,8 +5,9 @@ const Credits = () => {
     return (
         <Container className="my-5">
             <Card className="p-4 shadow-lg" style={{ borderRadius: "1rem" }}>
-                <h2>Credits</h2>
-                <h5><strong>Created by:</strong> Emma Ann Hynes N00222012</h5>
+                <h3>Credits</h3>
+                <h5><strong>Created by:</strong> Emma Ann Hynes </h5>
+                <h5>N00222012</h5>
                 <h5><strong>APIs Used:</strong></h5>
                 <ul>
                     <li>

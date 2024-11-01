@@ -11,7 +11,9 @@ const Secrets = () => {
                         <a href="https://youtu.be/Dwi7NF8-3Jk?si=dWEYoH-PYjIcPJG9/" target="_blank" rel="noopener noreferrer">
                             Secret!
                         </a>
-                        <a href="https://youtu.be/jS94-_zy3Dg?si=yOGX0w_ykAFlT69y" target="_blank" rel="noopener noreferrer">
+                    </li>
+                    <li>
+                        <a href="https://youtu.be/8liPBsUtND4?si=zwgKGWSg6_NqPjGT" target="_blank" rel="noopener noreferrer">
                             Secret TWO!
                         </a>
                     </li>

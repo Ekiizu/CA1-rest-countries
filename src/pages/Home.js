@@ -9,7 +9,7 @@ const Home = () => {
     const [searchTerm, setSearchTerm] = useState('');
 
     useEffect(() => {
-        // Fetch all countries if no search term is provided
+        // fetch all countries if no search term is provided
         if (!searchTerm) {
             axios.get('https://restcountries.com/v3.1/all')
                 .then(response => {
@@ -20,7 +20,7 @@ const Home = () => {
                     console.error(error);
                 });
         } else {
-            // Filter countries based on the search term
+            // filter countries based on the search term
             setCountriesList(prevCountriesList =>
                 prevCountriesList.filter(country =>
                     country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
