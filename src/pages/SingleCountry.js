@@ -11,7 +11,6 @@ const SingleCountry = () => {
     const [locationKey, setLocationKey] = useState(null); 
     const apiKey = "OgEH38w3L3n4cnB1CAuTSMK3EMfHHPhi"; 
    
-
     useEffect(() => {
         const fetchCountryData = async () => {
             try {
@@ -19,17 +18,16 @@ const SingleCountry = () => {
                 console.log("Response:", response.data[0]);
                 setCountry(response.data[0]);
 
-                // Fetch the location key using the country name
+                // fetch the location key using the country name
                 const locationResponse = await axios.get(`http://dataservice.accuweather.com/locations/v1/cities/search`, {
                     params: {
                         apikey: apiKey,
-                        q: response.data[0].name.common // Using the common name of the country
+                        q: response.data[0].name.common 
                     }
                 });
 
-                // Set the location key from the response
                 if (locationResponse.data.length > 0) {
-                    setLocationKey(locationResponse.data[0].Key); // Use the first result
+                    setLocationKey(locationResponse.data[0].Key); 
                 } else {
                     console.error("No location key found.");
                 }
@@ -45,7 +43,7 @@ const SingleCountry = () => {
         return <div>Loading...</div>;
     }
 
-    // Extract latitude and longitude from the country data for the Google Map API
+    // extract latitude and longitude from the country data for the Google Map API
     const lat = country.latlng[0]; // Latitude
     const lng = country.latlng[1]; // Longitude
 
@@ -53,9 +51,9 @@ const SingleCountry = () => {
 
     return (
         <Container className="my-5">
-            <Card className="p-4 shadow-lg">
-                <Row className="align-items-center">
-                    <Col md={6}>
+            <Row>
+                <Col md={8}>
+                    <Card className="p-4 shadow-lg mb-4" style={{ borderRadius: '1rem' }}>
                         <h1 className="mb-3 text">{country.name.common}</h1>
                         <h3 className="mb-3 text-muted">Official name: {country.name.official}</h3>
                         <h5><strong>Region:</strong> {country.region}</h5>
@@ -72,40 +70,42 @@ const SingleCountry = () => {
                             <strong>Currency:</strong> {Object.values(country.currencies)[0].name} 
                             ({Object.values(country.currencies)[0].symbol})
                         </h5>
-                    </Col>
 
-                    <Col md={6} className="text-center mb-4 mb-md-0">
-                        <Image
-                            src={country.flags.png}
-                            alt={`${country.name.common}'s flag`}
-                            rounded
-                            fluid
-                            style={{ maxHeight: "1000px" }}
-                        />
-                    </Col>
-                </Row>
+                        {country.capital && (
+                            <h5><strong>Capital:</strong> {country.capital[0]}</h5> 
+                        )}
+                        <h5><strong>Population:</strong> {country.population.toLocaleString()}</h5>
+                    </Card>
 
-            
+                    <Card className="p-4 shadow-lg" style={{ borderRadius: '1rem' }}>
+                        <h2>Location</h2>
+                        <MapComponent lat={lat} lng={lng} /> 
+                    </Card>
+                </Col>
 
-                <div className="my-5">
-                    <h2>Location</h2>
-                    <MapComponent lat={lat} lng={lng} /> 
-                </div>
-
-    
-                <div className="my-5">
-                    <h2>Weather Forecast</h2>
-                    <Col md={4} className="text-right mb-4 mb-md-0">
+                
+                <Col md={4}>
+                    <Card className="p-4 shadow-lg mb-4" style={{ borderRadius: '1rem' }}>
+                        <h2>Weather Forecast</h2>
                         <CurrentWeatherComponent lat={lat} lon={lng} />
-                    </Col>
-                </div>
+                    </Card>
 
-        
-
-            </Card>
+                    <Card className="p-4 shadow-lg" style={{ borderRadius: '1rem' }}>
+                        <h2>Flag</h2>
+                        <div className="text-center mt-4">
+                            <Image
+                                src={country.flags.png}
+                                alt={`${country.name.common}'s flag`}
+                                rounded
+                                fluid
+                                style={{ maxHeight: "200px" }}
+                            />
+                        </div>
+                    </Card>
+                </Col>
+            </Row>
         </Container>
     );
 };
 
 export default SingleCountry;
-

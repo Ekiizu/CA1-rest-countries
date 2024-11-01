@@ -1,0 +1,22 @@
+.custom-navbar {
+    background-color: #ab214a; 
+    border-bottom-left-radius: 0.5rem; /* rounded bottom left corner */
+    border-bottom-right-radius: 0.5rem; /* rounded bottom right corner */
+    padding: 0.5rem 1rem; 
+}
+
+.custom-navbar .nav-link,
+.custom-navbar .navbar-brand {
+    color: #ffffff; 
+}
+
+.custom-navbar .nav-link:hover,
+.custom-navbar .navbar-brand:hover {
+    color: #ab2144; 
+}
+
+.custom-navbar .dropdown-item:hover {
+    background-color: #ab214a; 
+    color: #ffffff; 
+}
+

@@ -47,8 +47,8 @@ const Home = () => {
 
     return (
         <Container className="my-4">
-            <h1 className="text-center mb-4">Country Explorer</h1>
-            <Form className="d-flex justify-content-center mb-4">
+            
+            <Form className="d-flex justify-content-right mb-4">
                 <FormControl
                     type="search"
                     placeholder="Search for a country"

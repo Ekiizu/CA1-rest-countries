@@ -10,10 +10,10 @@ const CurrentWeatherComponent = ({ lat, lon }) => {
         const fetchWeather = async () => {
             try {
                 const response = await axios.get(
-                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric` // Use "imperial" for Fahrenheit
+                    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric` 
                 );
                 setWeather(response.data);
-                console.log(response.data); // Log the weather data for debugging
+                console.log(response.data); 
             } catch (err) {
                 setError(err);
                 console.error("Error fetching weather data:", err);

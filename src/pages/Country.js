@@ -6,10 +6,10 @@ import { Image, Row, Col, Container, Card } from "react-bootstrap";
 const Country = () => {
   const { name } = useParams();
 
-  // Store the country data in a state
+  // store the country data in a state
   const [country, setCountry] = useState({});
 
-  // Fetch detailed country data
+  // fetch detailed country data
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/name/${name}?fullText=true`)
@@ -26,8 +26,8 @@ const Country = () => {
   }
 
   return (
-    <Container className="my-5">
-      <Card className="p-4 shadow-lg">
+    <Container className="my-5 ">
+      <Card className="p-4 shadow-lg"> 
         <Row className="align-items-center">
           <Col md={6} className="text-center">
             <Image
